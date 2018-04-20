@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-button ion-button full icon-right (click)="createProducts()">
+    상품등록 <ion-icon name="create"></ion-icon>
+  </ion-button>
+  <ion-list>
+    <ion-list-header>상품목록</ion-list-header>
+    <ion-item *ngFor="let product of productsObservable | async | orderBy:'name'" (click)="navToDetail(product)">
+    <h2>{{product.name}}</h2>
+      <p>
+        {{product.cost | currency:'KRW'}}
+      </p>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

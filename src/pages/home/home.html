@@ -7,14 +7,18 @@
 </ion-header>
 
 <ion-content padding>
+  <button ion-button full icon-right (click)="crateProduct()">
+    New Product <ion-icon name="create"></ion-icon>
+  </button>
+
   <ion-list>
-    <ion-list-header>상품목록</ion-list-header>
-    <ion-item *ngFor="let product of productsObservable | async | orderBy:'name'" (click)="navToDetail(product)">
-    <h2>{{product.name}}</h2>
+    <ion-list-header>이름별로 상품 정렬</ion-list-header>
+    <ion-item *ngFor="let product of products | async | orderBy:'name'" (click)="navToProductDetail(product)">
+      <h2>{{product.name}}</h2>
       <p>
-        {{product.cost | currency:'KRW'}}
+        {{product.cost | currency:'USD'}}
       </p>
     </ion-item>
-
   </ion-list>
+
 </ion-content>

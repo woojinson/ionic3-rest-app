@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {RestProvider} from "../../providers/rest/rest";
 import {Observable} from "rxjs/Observable";
-import {Product} from "../../model/product";
+import {Product} from '../../models/product';
 
 @Component({
   selector: 'page-home',
@@ -12,19 +12,17 @@ export class HomePage {
 
   products:Observable<Product[]>;
 
-  constructor(public navCtrl: NavController, public restProvider:RestProvider) {
-
+  constructor(public navCtrl: NavController,
+              private restProvider:RestProvider
+              ) {
   }
-
-  ionViewDidLoad() {
+  //life cycle method
+  ionViewDidLoad(){
     this.products = this.restProvider.getProducts();
   }
 
-  navToProductDetail(product:Product) {
+  //product 상세보기 페이지로 이동
+  navToProductDetail(product:Product){
     this.navCtrl.push("ProductPage",{product:product});
-  }
-
-  crateProduct(){
-    this.navCtrl.push("ProductPage",{product:{}});
   }
 }
